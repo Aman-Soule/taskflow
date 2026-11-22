@@ -1,0 +1,56 @@
+{# Passe `active_menu` depuis la vue : 'dashboard', 'tasks', 'projects', 'team', 'settings' #}
+<aside class="sidebar">
+  <ul class="nav">
+
+    <li class="nav-item {% if active_menu == 'dashboard' %}active{% endif %}" data-collapsible>
+      <a class="nav-link" href="#"><i class="fa-solid fa-chart-pie"></i> Tableau de bord
+        <i class="fa-solid fa-chevron-down chevron"></i></a>
+      <ul class="subnav" {% if active_menu != 'dashboard' %}hidden{% endif %}>
+        <li><a href="#">Général</a></li>
+        <li><a href="#">Rapports</a></li>
+        <li><a href="#">Statistiques</a></li>
+      </ul>
+    </li>
+
+    <li class="nav-item {% if active_menu == 'tasks' %}active{% endif %}" data-collapsible>
+      <a class="nav-link" href="#"><i class="fa-solid fa-list-check"></i> Tâches
+        <i class="fa-solid fa-chevron-right chevron"></i></a>
+      <ul class="subnav" {% if active_menu != 'tasks' %}hidden{% endif %}>
+        <li><a href="#">Toutes les tâches</a></li>
+        <li><a href="#">Mes tâches</a></li>
+        <li><a href="#">Tableau Kanban</a></li>
+        <li><a href="#">Nouvelle tâche</a></li>
+      </ul>
+    </li>
+
+    <li class="nav-item {% if active_menu == 'projects' %}active{% endif %}" data-collapsible>
+      <a class="nav-link" href="#"><i class="fa-solid fa-folder-open"></i> Projets
+        <i class="fa-solid fa-chevron-right chevron"></i></a>
+      <ul class="subnav" {% if active_menu != 'projects' %}hidden{% endif %}>
+        <li><a href="#">Tous les projets</a></li>
+        <li><a href="#">Nouveau projet</a></li>
+      </ul>
+    </li>
+
+    <li class="nav-item {% if active_menu == 'calendar' %}active{% endif %}">
+      <a class="nav-link" href="#"><i class="fa-regular fa-calendar"></i> Calendrier
+        <i class="fa-solid fa-chevron-right chevron"></i></a>
+    </li>
+
+    <li class="nav-item {% if active_menu == 'team' %}active{% endif %}">
+      <a class="nav-link" href="#"><i class="fa-solid fa-user-group"></i> Équipe
+        <i class="fa-solid fa-chevron-right chevron"></i></a>
+    </li>
+
+    <li class="nav-item {% if active_menu == 'tags' %}active{% endif %}">
+      <a class="nav-link" href="#"><i class="fa-solid fa-tag"></i> Étiquettes
+        <i class="fa-solid fa-chevron-right chevron"></i></a>
+    </li>
+
+    <li class="nav-item {% if active_menu == 'settings' %}active{% endif %}">
+      <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i> Compte
+        <i class="fa-solid fa-chevron-right chevron"></i></a>
+    </li>
+
+  </ul>
+</aside>

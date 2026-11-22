@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Tâches{% endblock %}
+
+{% block content %}
+{# ===== BLOC : en-tête ===== #}
+<div class="page-header">
+  <h1>Toutes les tâches</h1>
+  <div class="btn-group">
+    <a class="btn" href="#"><i class="fa-solid fa-table-columns"></i> Vue Kanban</a>
+    <a class="btn btn-primary" href="#"><i class="fa-solid fa-plus"></i> Nouvelle tâche</a>
+  </div>
+</div>
+
+<section class="card">
+  {# ===== BLOC : filtres ===== #}
+  <div class="card-header">
+    <form class="filters" method="get">
+      <div class="search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input class="form-control" type="search" name="q" placeholder="Rechercher une tâche…">
+      </div>
+      <select class="form-control" name="status">
+        <option value="">Tous les statuts</option>
+        <option value="todo">À faire</option>
+        <option value="in_progress">En cours</option>
+        <option value="done">Terminée</option>
+      </select>
+      <select class="form-control" name="priority">
+        <option value="">Toutes priorités</option>
+        <option value="high">Haute</option>
+        <option value="medium">Moyenne</option>
+        <option value="low">Basse</option>
+      </select>
+      <select class="form-control" name="project">
+        <option value="">Tous les projets</option>
+      </select>
+      <button class="btn" type="submit">Filtrer</button>
+    </form>
+  </div>
+
+  {# ===== BLOC : tableau ===== #}
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Échéance</th><th>Tâche</th><th>Projet</th><th>Assignée à</th><th>Priorité</th><th>Statut</th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {# Remplace par {% for task in page_obj %} ... {% empty %} ... {% endfor %} #}
+        <tr>
+          <td><div class="date-block" style="text-align:left;"><strong>12</strong><small>Nov.</small></div></td>
+          <td><a href="#"><strong>Maquette page d'accueil</strong></a><div class="muted">#T-6094</div></td>
+          <td><span class="tag">Refonte site</span></td>
+          <td><span class="avatar avatar-sm">SM</span> Sarah M.</td>
+          <td><span class="badge badge-red">Haute</span></td>
+          <td>{% include "partials/status_badge.html" with status="in_progress" %}</td>
+          <td class="text-right"><a class="btn" href="#"><i class="fa-solid fa-pen"></i></a></td>
+        </tr>
+        <tr>
+          <td><div class="date-block" style="text-align:left;"><strong>14</strong><small>Nov.</small></div></td>
+          <td><a href="#"><strong>Rédiger le cahier des charges</strong></a><div class="muted">#T-6093</div></td>
+          <td><span class="tag">App mobile</span></td>
+          <td><span class="avatar avatar-sm">JA</span> Jeremy A.</td>
+          <td><span class="badge badge-orange">Moyenne</span></td>
+          <td>{% include "partials/status_badge.html" with status="done" %}</td>
+          <td class="text-right"><a class="btn" href="#"><i class="fa-solid fa-pen"></i></a></td>
+        </tr>
+        <tr>
+          <td><div class="date-block" style="text-align:left;"><strong>09</strong><small>Nov.</small></div></td>
+          <td><a href="#"><strong>Corriger le bug de connexion</strong></a><div class="muted">#T-6091</div></td>
+          <td><span class="tag">API</span></td>
+          <td><span class="avatar avatar-sm">EB</span> Emma B.</td>
+          <td><span class="badge badge-gray">Basse</span></td>
+          <td>{% include "partials/status_badge.html" with status="late" %}</td>
+          <td class="text-right"><a class="btn" href="#"><i class="fa-solid fa-pen"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  {# ===== BLOC : pagination ===== #}
+  {% include "partials/pagination.html" %}
+</section>
+{% endblock %}

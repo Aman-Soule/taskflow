@@ -1,0 +1,8 @@
+{# Usage : {% include "partials/stat_tile.html" with icon="fa-user" label="Tâches ouvertes" value=12 %} #}
+<div class="stat-tile">
+  <div class="stat-icon"><i class="fa-solid {{ icon }}"></i></div>
+  <div>
+    <div class="stat-label">{{ label }}</div>
+    <div class="stat-value">{{ value }}</div>
+  </div>
+</div>

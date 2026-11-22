@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Projets{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Projets</h1>
+  <a class="btn btn-primary" href="#"><i class="fa-solid fa-plus"></i> Nouveau projet</a>
+</div>
+
+<div class="grid grid-3">
+  {# Remplace par {% for project in projects %} ... {% endfor %} #}
+
+  {# ===== BLOC : carte projet ===== #}
+  <article class="card">
+    <div class="card-body">
+      <div style="display:flex; justify-content:space-between; align-items:start;">
+        <h2><a href="#" style="color:inherit;">Refonte site</a></h2>
+        <span class="tag">Actif</span>
+      </div>
+      <p class="muted">Nouvelle identité et nouvelle page d'accueil du site vitrine.</p>
+      <div class="progress"><span style="width:65%"></span></div>
+      <div class="muted" style="margin:6px 0 16px;">65 % · 13 / 20 tâches</div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="avatar-group">
+          <span class="avatar avatar-sm">SM</span><span class="avatar avatar-sm">JA</span><span class="avatar avatar-sm">EB</span>
+        </div>
+        <span class="muted"><i class="fa-regular fa-calendar"></i> 30 déc.</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-body">
+      <div style="display:flex; justify-content:space-between; align-items:start;">
+        <h2><a href="#" style="color:inherit;">App mobile</a></h2>
+        <span class="tag">Actif</span>
+      </div>
+      <p class="muted">Application iOS et Android pour les clients.</p>
+      <div class="progress"><span style="width:30%"></span></div>
+      <div class="muted" style="margin:6px 0 16px;">30 % · 6 / 20 tâches</div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="avatar-group"><span class="avatar avatar-sm">JA</span><span class="avatar avatar-sm">EB</span></div>
+        <span class="muted"><i class="fa-regular fa-calendar"></i> 15 fév.</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-body">
+      <div style="display:flex; justify-content:space-between; align-items:start;">
+        <h2><a href="#" style="color:inherit;">Marketing</a></h2>
+        <span class="tag">Terminé</span>
+      </div>
+      <p class="muted">Campagne de lancement automne.</p>
+      <div class="progress"><span style="width:100%"></span></div>
+      <div class="muted" style="margin:6px 0 16px;">100 % · 12 / 12 tâches</div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="avatar-group"><span class="avatar avatar-sm">SM</span></div>
+        <span class="muted"><i class="fa-regular fa-calendar"></i> 01 nov.</span>
+      </div>
+    </div>
+  </article>
+</div>
+{% endblock %}

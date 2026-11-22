@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Projet{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <div class="muted">Projets / Refonte site</div>
+    <h1 style="margin-top:4px;">Refonte site</h1>
+  </div>
+  <div class="btn-group">
+    <a class="btn" href="#"><i class="fa-solid fa-pen"></i> Modifier</a>
+    <a class="btn btn-primary" href="#"><i class="fa-solid fa-plus"></i> Ajouter une tâche</a>
+  </div>
+</div>
+
+<div class="grid grid-3" style="margin-bottom:24px;">
+  {% include "partials/stat_tile.html" with icon="fa-list-check" label="Tâches totales" value=20 %}
+  {% include "partials/stat_tile.html" with icon="fa-spinner" label="En cours" value=5 %}
+  {% include "partials/stat_tile.html" with icon="fa-circle-check" label="Terminées" value=13 %}
+</div>
+
+<div class="grid grid-main">
+  <section class="card">
+    <div class="card-header"><h2>Tâches du projet</h2></div>
+    <div class="list">
+      <div class="list-row">
+        <div class="grow"><a href="#">Maquette page d'accueil</a><div class="muted">Échéance 12 nov.</div></div>
+        {% include "partials/status_badge.html" with status="in_progress" %}
+      </div>
+      <div class="list-row">
+        <div class="grow"><a href="#">Choisir la palette de couleurs</a><div class="muted">Échéance 20 nov.</div></div>
+        {% include "partials/status_badge.html" with status="todo" %}
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-header"><h2>Membres</h2></div>
+    <div class="list">
+      <div class="list-row"><span class="avatar">SM</span><div class="grow">Sarah Mallet<div class="muted">Chef de projet</div></div></div>
+      <div class="list-row"><span class="avatar">JA</span><div class="grow">Jeremy Assa<div class="muted">Développeur</div></div></div>
+      <div class="list-row"><span class="avatar">EB</span><div class="grow">Emma Bayart<div class="muted">Designer</div></div></div>
+    </div>
+  </section>
+</div>
+{% endblock %}

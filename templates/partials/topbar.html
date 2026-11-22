@@ -1,0 +1,28 @@
+<header class="topbar">
+  <div style="display:flex; align-items:center; gap:16px;">
+    <button class="menu-toggle" data-menu-toggle type="button">
+      Menu <i class="fa-solid fa-chevron-down"></i>
+    </button>
+    <a class="brand" href="#">
+      <span class="brand-logo"><i class="fa-solid fa-check"></i></span>
+      TaskFlow
+    </a>
+  </div>
+
+  <div class="topbar-actions">
+    <button class="icon-btn" title="Calendrier" type="button"><i class="fa-regular fa-calendar"></i></button>
+    <button class="icon-btn" title="Rechercher" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <a class="icon-btn" href="#" title="Nouvelle tâche"><i class="fa-solid fa-plus"></i></a>
+    <button class="icon-btn" title="Aide" type="button"><i class="fa-solid fa-circle-question"></i></button>
+    <button class="icon-btn" title="Notifications" type="button">
+      <i class="fa-solid fa-bell"></i><span class="dot"></span>
+    </button>
+
+    <div class="user-menu">
+      {# Remplace par {{ request.user.get_full_name }} #}
+      <span class="avatar">SM</span>
+      <span class="user-name">Sarah Mallet</span>
+      <i class="fa-solid fa-chevron-down" style="font-size:11px;"></i>
+    </div>
+  </div>
+</header>

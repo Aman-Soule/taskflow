@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}Tableau de bord{% endblock %}
+
+{% block content %}
+<h1>Tableau de bord</h1>
+
+{# ===== BLOC : chips d'info rapide ===== #}
+<div class="chips">
+  <a class="chip chip-green" href="#"><i class="fa-solid fa-circle-plus"></i> Nouvelle tâche</a>
+  <a class="chip chip-yellow" href="#"><i class="fa-regular fa-clock"></i> Aujourd'hui : 3 échéances</a>
+  <a class="chip chip-yellow" href="#"><i class="fa-solid fa-triangle-exclamation"></i> 2 en retard</a>
+</div>
+
+{# ===== BLOC : notifications + stats ===== #}
+<div class="grid grid-main" style="margin-bottom:24px;">
+
+  <section class="card">
+    <div class="card-header">
+      <h2>Notifications</h2>
+      <button class="filter" type="button">30 derniers jours <i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+    <div class="list">
+      <a class="list-row" href="#">
+        <i class="icon fa-solid fa-list-check"></i><span class="grow">3 tâches assignées</span>
+        <i class="arrow fa-solid fa-arrow-right"></i>
+      </a>
+      <a class="list-row" href="#">
+        <i class="icon fa-solid fa-comments"></i><span class="grow">1 nouveau commentaire</span>
+        <i class="arrow fa-solid fa-arrow-right"></i>
+      </a>
+      <a class="list-row" href="#">
+        <i class="icon fa-regular fa-clock"></i><span class="grow">3 échéances cette semaine</span>
+        <i class="arrow fa-solid fa-arrow-right"></i>
+      </a>
+      <a class="list-row" href="#">
+        <i class="icon fa-solid fa-paperclip"></i><span class="grow">1 pièce jointe manquante</span>
+        <i class="arrow fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <div class="stack" style="gap:16px;">
+    {% include "partials/stat_tile.html" with icon="fa-user" label="Membres actifs cette semaine" value=12 %}
+    {% include "partials/stat_tile.html" with icon="fa-list-check" label="Tâches créées cette semaine" value=35 %}
+    {% include "partials/stat_tile.html" with icon="fa-circle-check" label="Tâches terminées cette semaine" value=28 %}
+  </div>
+</div>
+
+{# ===== BLOC : graphique d'activité ===== #}
+<section class="card" style="margin-bottom:24px;">
+  <div class="card-header">
+    <h2>Statistiques</h2>
+    <button class="filter" type="button">12 derniers mois <i class="fa-solid fa-chevron-down"></i></button>
+  </div>
+  <div class="card-body">
+    <div class="chart-box"><canvas id="activityChart"></canvas></div>
+  </div>
+</section>
+
+{# ===== BLOC : répartition + dernières tâches ===== #}
+<div class="grid grid-2" style="grid-template-columns: 1fr 1.6fr;">
+
+  <section class="card">
+    <div class="card-header">
+      <h2>Vue d'ensemble des tâches</h2>
+      <button class="filter" type="button">30 derniers jours <i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+    <div class="card-body">
+      <div class="chart-box small"><canvas id="statusChart"></canvas></div>
+    </div>
+    <div class="card-footer"><span>Total</span><span>128</span></div>
+  </section>
+
+  <section class="card">
+    <div class="card-header">
+      <h2>Dernières tâches</h2>
+      <a href="#" style="font-size:13px;">Tout voir</a>
+    </div>
+    <div class="list">
+      {# Remplace cette boucle statique par {% for task in latest_tasks %} ... {% endfor %} #}
+      <div class="list-row">
+        <div class="date-block"><strong>12</strong><small>Nov.</small></div>
+        <div class="grow"><a href="#">Maquette page d'accueil</a><div class="muted">Refonte site · #T-6094</div></div>
+        {% include "partials/status_badge.html" with status="in_progress" %}
+      </div>
+      <div class="list-row">
+        <div class="date-block"><strong>12</strong><small>Nov.</small></div>
+        <div class="grow"><a href="#">Rédiger le cahier des charges</a><div class="muted">App mobile · #T-6093</div></div>
+        {% include "partials/status_badge.html" with status="done" %}
+      </div>
+      <div class="list-row">
+        <div class="date-block"><strong>11</strong><small>Nov.</small></div>
+        <div class="grow"><a href="#">Corriger le bug de connexion</a><div class="muted">API · #T-6091</div></div>
+        {% include "partials/status_badge.html" with status="late" %}
+      </div>
+      <div class="list-row">
+        <div class="date-block"><strong>10</strong><small>Nov.</small></div>
+        <div class="grow"><a href="#">Préparer la démo client</a><div class="muted">Marketing · #T-6088</div></div>
+        {% include "partials/status_badge.html" with status="todo" %}
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script>
+  // Données d'exemple : remplace-les par {{ ...|json_script }} depuis ta vue
+  new Chart(document.getElementById("activityChart"), {
+    type: "line",
+    data: {
+      labels: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."],
+      datasets: [
+        { label: "Créées", data: [60,64,62,66,70,72,68,75,80,78,82,85], borderColor: "#1f5fa8", backgroundColor: "rgba(47,123,208,.08)", fill: true, tension: .3, pointRadius: 0 },
+        { label: "En cours", data: [40,42,41,44,46,48,45,50,52,51,54,55], borderColor: "#5b9ae0", tension: .3, pointRadius: 0 },
+        { label: "En retard", data: [10,12,11,14,16,15,13,18,20,19,17,16], borderColor: "#e5484d", tension: .3, pointRadius: 0 }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom" } }, scales: { y: { beginAtZero: true } } }
+  });
+
+  new Chart(document.getElementById("statusChart"), {
+    type: "doughnut",
+    data: {
+      labels: ["Terminées", "En cours", "À faire", "En retard"],
+      datasets: [{ data: [48, 40, 25, 15], backgroundColor: ["#ff6b81", "#2f7bd0", "#fbb400", "#6fa08f"], borderWidth: 0 }]
+    },
+    options: { responsive: true, maintainAspectRatio: false, cutout: "68%", plugins: { legend: { position: "right" } } }
+  });
+</script>
+{% endblock %}

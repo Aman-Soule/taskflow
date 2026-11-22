@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Tableau Kanban{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Tableau Kanban</h1>
+  <div class="btn-group">
+    <select class="form-control" style="width:auto;">
+      <option>Tous les projets</option>
+    </select>
+    <a class="btn btn-primary" href="#"><i class="fa-solid fa-plus"></i> Nouvelle tâche</a>
+  </div>
+</div>
+
+<div class="kanban">
+
+  {# ===== COLONNE : À faire ===== #}
+  <section class="kanban-col">
+    <div class="kanban-col-header"><h2>À faire</h2><span class="kanban-count">2</span></div>
+
+    <article class="kanban-card">
+      <h3><a href="#" style="color:inherit;">Préparer la démo client</a></h3>
+      <span class="tag">Marketing</span>
+      <div class="kanban-card-footer">
+        <span><i class="fa-regular fa-calendar"></i> 18 nov.</span>
+        <span class="avatar avatar-sm">SM</span>
+      </div>
+    </article>
+
+    <article class="kanban-card">
+      <h3><a href="#" style="color:inherit;">Choisir la palette de couleurs</a></h3>
+      <span class="tag">Refonte site</span>
+      <div class="kanban-card-footer">
+        <span><i class="fa-regular fa-calendar"></i> 20 nov.</span>
+        <span class="avatar avatar-sm">JA</span>
+      </div>
+    </article>
+  </section>
+
+  {# ===== COLONNE : En cours ===== #}
+  <section class="kanban-col">
+    <div class="kanban-col-header"><h2>En cours</h2><span class="kanban-count">1</span></div>
+
+    <article class="kanban-card">
+      <h3><a href="#" style="color:inherit;">Maquette page d'accueil</a></h3>
+      <span class="tag">Refonte site</span>
+      <div class="progress" style="margin-top:12px;"><span style="width:60%"></span></div>
+      <div class="kanban-card-footer">
+        <span><i class="fa-regular fa-calendar"></i> 12 nov.</span>
+        <span class="avatar avatar-sm">SM</span>
+      </div>
+    </article>
+  </section>
+
+  {# ===== COLONNE : Terminé ===== #}
+  <section class="kanban-col">
+    <div class="kanban-col-header"><h2>Terminé</h2><span class="kanban-count">1</span></div>
+
+    <article class="kanban-card">
+      <h3><a href="#" style="color:inherit;">Rédiger le cahier des charges</a></h3>
+      <span class="tag">App mobile</span>
+      <div class="kanban-card-footer">
+        <span class="badge badge-green">Terminée</span>
+        <span class="avatar avatar-sm">EB</span>
+      </div>
+    </article>
+  </section>
+
+</div>
+{% endblock %}

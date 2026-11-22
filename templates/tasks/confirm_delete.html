@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Supprimer la tâche{% endblock %}
+
+{% block content %}
+<h1>Supprimer la tâche</h1>
+<section class="card" style="max-width:520px;">
+  <form method="post">
+    {% csrf_token %}
+    <div class="card-body">
+      <p>Voulez-vous vraiment supprimer <strong>« {{ object }} »</strong> ? Cette action est irréversible.</p>
+    </div>
+    <div class="card-footer" style="justify-content:flex-end; gap:10px;">
+      <a class="btn" href="#">Annuler</a>
+      <button class="btn btn-danger" type="submit">Oui, supprimer</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

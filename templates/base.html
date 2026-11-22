@@ -1,14 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}TaskFlow{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
 </head>
-<body>
-    <nav>
-        <a href="{% url 'tasks:home' %}">Accueil</a>
-    </nav>
-    {% block content %}{% endblock %}
+<body> 
+  {# ===== BLOC 1 : barre du haut ===== #}
+  {% include "partials/topbar.html" %}
+
+  <div class="app-shell">
+
+    {# ===== BLOC 2 : menu latéral ===== #}
+    {% include "partials/sidebar.html" %}
+
+    {# ===== BLOC 3 : contenu de la page ===== #}
+    <main class="main">
+      {% include "partials/messages.html" %}
+      {% block content %}{% endblock %}
+    </main>
+
+  </div>
+
+  <script src="{% static 'js/app.js' %}"></script>
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

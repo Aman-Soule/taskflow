@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Mon compte{% endblock %}
+
+{% block content %}
+<h1>Mon compte</h1>
+
+<div class="grid grid-2" style="max-width:1000px;">
+
+  {# ===== BLOC : informations personnelles ===== #}
+  <section class="card">
+    <div class="card-header"><h2>Informations personnelles</h2></div>
+    <form method="post">
+      {% csrf_token %}
+      <div class="card-body">
+        <div class="form-row">
+          <div class="form-group"><label>Prénom</label><input class="form-control" name="first_name" value="Sarah"></div>
+          <div class="form-group"><label>Nom</label><input class="form-control" name="last_name" value="Mallet"></div>
+        </div>
+        <div class="form-group"><label>E-mail</label><input class="form-control" type="email" name="email" value="sarah@exemple.com"></div>
+        <button class="btn btn-primary" type="submit">Enregistrer</button>
+      </div>
+    </form>
+  </section>
+
+  {# ===== BLOC : mot de passe ===== #}
+  <section class="card">
+    <div class="card-header"><h2>Mot de passe</h2></div>
+    <form method="post">
+      {% csrf_token %}
+      <div class="card-body">
+        <div class="form-group"><label>Mot de passe actuel</label><input class="form-control" type="password" name="old_password"></div>
+        <div class="form-group"><label>Nouveau mot de passe</label><input class="form-control" type="password" name="new_password1"></div>
+        <div class="form-group"><label>Confirmation</label><input class="form-control" type="password" name="new_password2"></div>
+        <button class="btn btn-primary" type="submit">Modifier</button>
+      </div>
+    </form>
+  </section>
+
+</div>
+{% endblock %}

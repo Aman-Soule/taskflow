@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Détail de la tâche{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div>
+    <div class="muted">Tâches / #T-6094</div>
+    <h1 style="margin-top:4px;">Maquette page d'accueil</h1>
+  </div>
+  <div class="btn-group">
+    <a class="btn" href="#"><i class="fa-solid fa-pen"></i> Modifier</a>
+    <a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i> Supprimer</a>
+  </div>
+</div>
+
+<div class="grid grid-main">
+
+  <div class="stack">
+    {# ===== BLOC : description ===== #}
+    <section class="card">
+      <div class="card-header"><h2>Description</h2></div>
+      <div class="card-body">
+        <p>Créer la maquette de la nouvelle page d'accueil en respectant la charte graphique validée.</p>
+        <h3 style="margin:20px 0 8px;">Sous-tâches</h3>
+        <ul class="checklist">
+          <li><input type="checkbox" checked> Wireframe desktop</li>
+          <li><input type="checkbox" checked> Wireframe mobile</li>
+          <li><input type="checkbox"> Validation client</li>
+        </ul>
+      </div>
+    </section>
+
+    {# ===== BLOC : commentaires ===== #}
+    <section class="card">
+      <div class="card-header"><h2>Commentaires</h2><span class="muted">2</span></div>
+      <div class="card-body">
+        <div class="comment">
+          <span class="avatar">EB</span>
+          <div><strong>Emma Bayart</strong> <span class="muted">· il y a 2 h</span><p style="margin:4px 0 0;">Le wireframe mobile est prêt à relire.</p></div>
+        </div>
+        <div class="comment">
+          <span class="avatar">JA</span>
+          <div><strong>Jeremy Assa</strong> <span class="muted">· hier</span><p style="margin:4px 0 0;">Pense à ajouter la section témoignages.</p></div>
+        </div>
+
+        <form method="post" style="margin-top:20px;">
+          {% csrf_token %}
+          <div class="form-group"><textarea class="form-control" name="content" placeholder="Ajouter un commentaire…"></textarea></div>
+          <button class="btn btn-primary" type="submit">Publier</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  {# ===== BLOC : informations (colonne droite) ===== #}
+  <aside>
+    <section class="card">
+      <div class="card-header"><h2>Informations</h2></div>
+      <div class="card-body">
+        <dl class="meta-list">
+          <dt>Statut</dt><dd>{% include "partials/status_badge.html" with status="in_progress" %}</dd>
+          <dt>Priorité</dt><dd><span class="badge badge-red">Haute</span></dd>
+          <dt>Projet</dt><dd><span class="tag">Refonte site</span></dd>
+          <dt>Assignée à</dt><dd><span class="avatar avatar-sm">SM</span> Sarah Mallet</dd>
+          <dt>Échéance</dt><dd>12 nov. 2026</dd>
+          <dt>Créée le</dt><dd>02 nov. 2026</dd>
+        </dl>
+      </div>
+    </section>
+  </aside>
+
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Équipe{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Équipe</h1>
+  <a class="btn btn-primary" href="#"><i class="fa-solid fa-user-plus"></i> Inviter un membre</a>
+</div>
+
+<section class="card">
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr><th>Membre</th><th>Rôle</th><th>Tâches ouvertes</th><th>Statut</th><th></th></tr>
+      </thead>
+      <tbody>
+        {# Remplace par {% for member in members %} ... {% endfor %} #}
+        <tr>
+          <td><span class="avatar avatar-sm">SM</span> <strong>Sarah Mallet</strong><div class="muted" style="margin-left:38px;">sarah@exemple.com</div></td>
+          <td>Chef de projet</td><td>8</td><td><span class="badge badge-green">Actif</span></td>
+          <td class="text-right"><a class="btn" href="#"><i class="fa-solid fa-ellipsis"></i></a></td>
+        </tr>
+        <tr>
+          <td><span class="avatar avatar-sm">JA</span> <strong>Jeremy Assa</strong><div class="muted" style="margin-left:38px;">jeremy@exemple.com</div></td>
+          <td>Développeur</td><td>12</td><td><span class="badge badge-green">Actif</span></td>
+          <td class="text-right"><a class="btn" href="#"><i class="fa-solid fa-ellipsis"></i></a></td>
+        </tr>
+        <tr>
+          <td><span class="avatar avatar-sm">EB</span> <strong>Emma Bayart</strong><div class="muted" style="margin-left:38px;">emma@exemple.com</div></td>
+          <td>Designer</td><td>4</td><td><span class="badge badge-gray">Absent</span></td>
+          <td class="text-right"><a class="btn" href="#"><i class="fa-solid fa-ellipsis"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

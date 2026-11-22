@@ -1,0 +1,6 @@
+{# Usage : {% include "partials/status_badge.html" with status=task.status %}
+   Valeurs attendues : todo / in_progress / done / late — adapte à ton modèle #}
+{% if status == "done" %}<span class="badge badge-green">Terminée</span>
+{% elif status == "in_progress" %}<span class="badge badge-blue">En cours</span>
+{% elif status == "late" %}<span class="badge badge-red">En retard</span>
+{% else %}<span class="badge badge-gray">À faire</span>{% endif %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}{% if object %}Modifier la tâche{% else %}Nouvelle tâche{% endif %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>{% if object %}Modifier la tâche{% else %}Nouvelle tâche{% endif %}</h1>
+</div>
+
+<section class="card" style="max-width:760px;">
+  <form method="post">
+    {% csrf_token %}
+    <div class="card-body">
+
+      <div class="form-group">
+        <label for="id_title">Titre</label>
+        <input class="form-control" type="text" name="title" id="id_title" placeholder="Ex : Préparer la démo" required>
+        {# {{ form.title.errors }} #}
+      </div>
+
+      <div class="form-group">
+        <label for="id_description">Description</label>
+        <textarea class="form-control" name="description" id="id_description"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="id_project">Projet</label>
+          <select class="form-control" name="project" id="id_project"><option value="">—</option></select>
+        </div>
+        <div class="form-group">
+          <label for="id_assignee">Assignée à</label>
+          <select class="form-control" name="assignee" id="id_assignee"><option value="">—</option></select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="id_priority">Priorité</label>
+          <select class="form-control" name="priority" id="id_priority">
+            <option value="low">Basse</option>
+            <option value="medium" selected>Moyenne</option>
+            <option value="high">Haute</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id_status">Statut</label>
+          <select class="form-control" name="status" id="id_status">
+            <option value="todo">À faire</option>
+            <option value="in_progress">En cours</option>
+            <option value="done">Terminée</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="id_due_date">Date d'échéance</label>
+        <input class="form-control" type="date" name="due_date" id="id_due_date">
+        <div class="help-text">Optionnel.</div>
+      </div>
+    </div>
+
+    <div class="card-footer" style="justify-content:flex-end; gap:10px;">
+      <a class="btn" href="#">Annuler</a>
+      <button class="btn btn-primary" type="submit">Enregistrer</button>
+    </div>
+  </form>
+</section>
+{% endblock %}
