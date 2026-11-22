@@ -3,23 +3,22 @@
   <ul class="nav">
 
     <li class="nav-item {% if active_menu == 'dashboard' %}active{% endif %}" data-collapsible>
-      <a class="nav-link" href="#"><i class="fa-solid fa-chart-pie"></i> Tableau de bord
+      <a class="nav-link" href="{% url 'tasks:home' %}"><i class="fa-solid fa-chart-pie"></i> Tableau de bord
         <i class="fa-solid fa-chevron-down chevron"></i></a>
       <ul class="subnav" {% if active_menu != 'dashboard' %}hidden{% endif %}>
-        <li><a href="#">Général</a></li>
+        <li><a href="{% url 'tasks:home' %}">Général</a></li>
         <li><a href="#">Rapports</a></li>
         <li><a href="#">Statistiques</a></li>
       </ul>
     </li>
 
     <li class="nav-item {% if active_menu == 'tasks' %}active{% endif %}" data-collapsible>
-      <a class="nav-link" href="#"><i class="fa-solid fa-list-check"></i> Tâches
+      <a class="nav-link" href="{% url 'tasks:task_list' %}"><i class="fa-solid fa-list-check"></i> Tâches
         <i class="fa-solid fa-chevron-right chevron"></i></a>
       <ul class="subnav" {% if active_menu != 'tasks' %}hidden{% endif %}>
-        <li><a href="#">Toutes les tâches</a></li>
-        <li><a href="#">Mes tâches</a></li>
+        <li><a href="{% url 'tasks:task_list' %}">Toutes les tâches</a></li>
         <li><a href="#">Tableau Kanban</a></li>
-        <li><a href="#">Nouvelle tâche</a></li>
+        <li><a href="{% url 'tasks:task_create' %}">Nouvelle tâche</a></li>
       </ul>
     </li>
 

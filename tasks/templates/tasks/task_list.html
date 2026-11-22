@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="filters" method="get">
+  <input class="form-control" type="search" name="q" value="{{ request.GET.q }}" placeholder="Rechercher…">
+  <select class="form-control" name="status">
+    <option value="">Tous les statuts</option>
+    {% for value, label in status_choices %}
+      <option value="{{ value }}" {% if request.GET.status == value %}selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+  </select>
+  <select class="form-control" name="project">
+    <option value="">Tous les projets</option>
+    {% for p in projects %}
+      <option value="{{ p.pk }}" {% if request.GET.project == p.pk|stringformat:"s" %}selected{% endif %}>{{ p.name }}</option>
+    {% endfor %}
+  </select>
+  <button class="btn" type="submit">Filtrer</button>
+</form>
+
+<thead><tr><th>Échéance</th><th>Tâche</th><th>Projet</th><th>Statut</th><th></th></tr></thead>
+<tbody>
+{% for task in tasks %}
+  <tr>
+    <td>{{ task.due_date|date:"d M Y"|default:"—" }}</td>
+    <td><a href="{% url 'tasks:task_detail' task.pk %}"><strong>{{ task.title }}</strong></a></td>
+    <td><span class="tag">{{ task.project.name }}</span></td>
+    <td>{% include "partials/status_badge.html" with status=task.display_status %}</td>
+    <td class="text-right">
+      <a class="btn" href="{% url 'tasks:task_update' task.pk %}"><i class="fa-solid fa-pen"></i></a>
+      <a class="btn btn-danger" href="{% url 'tasks:task_delete' task.pk %}"><i class="fa-solid fa-trash"></i></a>
+    </td>
+  </tr>
+{% empty %}
+  <tr><td colspan="5" class="empty">Aucune tâche pour le moment.</td></tr>
+{% endfor %}
+</tbody>
+
+{% endblock%}

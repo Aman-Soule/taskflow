@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone   # en haut du fichier
+
 
 # Create your models here.
 
@@ -26,6 +28,12 @@ class Task(models.Model):
         TODO = "todo", "À faire"
         DOING = "doing", "En cours"
         DONE = "done", "Terminée"
+    @property
+    def display_status(self):
+        """Statut pour le badge : 'late' est calculé, pas stocké."""
+        if self.status != self.Status.DONE and self.due_date and self.due_date < timezone.localdate():
+            return "late"
+        return self.status
         
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="tasks")
     
